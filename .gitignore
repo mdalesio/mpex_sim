@@ -1,3 +1,37 @@
+<<<<<<< HEAD
+# Install directories
+/bin/
+/cfg/
+/db/
+/dbd/
+/html/
+/include/
+/lib/
+/templates/
+
+# Local configuration files
+/configure/*.local
+
+# iocBoot generated files
+/iocBoot/*ioc*/cdCommands
+/iocBoot/*ioc*/dllPath.bat
+/iocBoot/*ioc*/envPaths
+/iocBoot/*ioc*/relPaths.sh
+
+# iocsh
+.iocsh_history
+
+# Build directories
+O.*/
+
+# Common files created by other tools
+/QtC-*
+/.vscode/
+*.orig
+*.log
+.*.swp
+.DS_Store
+=======
 # Prerequisites
 *.d
 
@@ -50,3 +84,4 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+>>>>>>> 57cb6d5dc3f50621409a313bc2bc060cec2f6f2c

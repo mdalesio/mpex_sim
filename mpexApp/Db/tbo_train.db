@@ -1,0 +1,29 @@
+# SYS = VAC_PMIT
+# Bypass valve = $(SYS):VLV:BYP_sts
+# Turbo valve = $(SYS):VLV:TBO_sts
+# Rough pump status = $(SYS):PMP:RPMP_sts
+# Turbo pump status = $(SYS):PMP:TPMP_sts
+
+# Valves configured to: 0. Closed, 1. Roughing, 2. Turbo
+record ( calcout, "$(SYS):TRAIN:VLV_mode" ) {
+    field ( INPA, "$(SYS):VLV:BYP_sts.VAL" )
+    field ( INPB, "$(SYS):VLV:TBO_sts.VAL" )
+    field ( CALC, "A + (B * 2)" )
+    field ( SCAN, "1 second" )
+}
+
+# Pump configured to: 0. Off, 1. Roughing, 2. Fault, 3. Turbo
+record ( calcout, "$(SYS):TRAIN:PMP_mode" ) {
+    field ( INPA, "$(SYS):PMP:RPMP_sts.VAL" )
+    field ( INPB, "$(SYS):PMP:TPMP_sts.VAL" )
+    field ( CALC, "A + (B * 2)" )
+    field ( SCAN, "1 second" )
+}
+
+# Train configured to: 0. Off, 2. Roughing, 5. Turbo
+record ( calcout, "$(SYS):TRAIN:TRN_mode" ) {
+    field ( INPA, "$(SYS):TRAIN:VLV_mode" )
+    field ( INPB, "$(SYS):TRAIN:PMP_mode" )
+    field ( CALC, "A + B" )
+    field ( SCAN, "1 second" )
+}

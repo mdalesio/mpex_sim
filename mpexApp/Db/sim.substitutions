@@ -1,0 +1,4 @@
+file "sim_chamber.db" {
+    pattern { SYS, TTRAIN }
+    { "VAC_PMI", "VAC_PMIT"  }
+}

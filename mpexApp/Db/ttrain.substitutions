@@ -1,0 +1,20 @@
+file "valve.db" {
+    pattern { SYS, SDEV }
+    { "VAC_PMIT", "BYP" }
+    { "VAC_PMIT", "TBO" }
+}
+
+file "tpmp.db" {
+    pattern { SYS }
+    { "VAC_PMIT" }
+}
+
+file "rpmp.db" {
+    pattern { SYS }
+    { "VAC_PMIT" }
+}
+
+file "tbo_train.db" {
+    pattern { SYS }
+    { "VAC_PMIT" }
+}

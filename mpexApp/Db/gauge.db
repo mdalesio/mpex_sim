@@ -1,0 +1,9 @@
+# pattern   { SYS }
+#           { "VAC_PMI" }
+
+record ( ai, "$(SYS):GGE:P" ) {
+    field ( INP, "$(SYS):GGE:sim PP"  ) # sim
+    field ( EGU,  "Pascal" )
+    field ( SCAN, "1 second" )
+    # field ( TPRO, "1" ) # sim
+}
