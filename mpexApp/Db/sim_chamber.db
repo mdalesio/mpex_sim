@@ -1,0 +1,32 @@
+# pattern   { SYS,          TTRAIN      }
+#           { "VAC_PMI",    "VAC_PMIT"  }
+
+# Valves configured to: 0. Closed, 1. Roughing, 2. Turbo
+# Pump configured to: 0. Off, 1. Roughing, 2. Fault, 3. Turbo
+# A=1 (valve roughing), C=1 (pumps roughing), B=1 (vessel valve open)
+# A=2 (valve turbo), C=3 (pumps turbo), B=1 (vessel valve open)
+# if pumps are rough or turbo, either is working
+# if bypass valve and pumps, then roughing down to 20 Pa
+# if turbo valve and pumps, then fining down to 1E-8 Pa
+record( calc, "$(SYS):GGE:mode" ) {
+    field( DESC, "Valve and Pump Mode Logic" )
+    # field( SCAN, ".1 second" )
+    field( INPA, "$(TTRAIN):TRAIN:VLV_mode" )   # Input A: Valve Mode
+    field( INPB, "$(TTRAIN):TRAIN:PMP_mode" )   # Input B: Pump Mode
+    field( INPC, "$(SYS):VLV:TTRAIN_sts" )
+    field( CALC, "A=1&&((B=1)||(B=3))&&C=1?1:(A=2&&B=3&&C=1)?2:0" ) # 1=rough, 2=turbo
+    # field( FLNK, "$(SYS):GGE:delta PP" )
+}
+
+record ( calc, "$(SYS):GGE:delta" ) {
+    field ( INPA, "$(SYS):GGE:mode PP" )
+    field ( INPB, "$(SYS):GGE:sim" )
+    field ( CALC, "(A=1&&B>20)?B/5:(A=2&&B>0.00000001)?B/2:B" )
+    # field ( FLNK, "(SYS):GGE:sim PP" )
+}
+
+record ( ai, "$(SYS):GGE:sim" ) {
+    # field ( SCAN, ".1 second" )
+    field ( INP, "$(SYS):GGE:delta PP" )
+    field ( VAL, "101325" )
+}

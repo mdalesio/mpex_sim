@@ -1,0 +1,27 @@
+record ( bo, "$(SYS):VLV:$(SDEV)_req") {
+   field ( VAL, 0 )
+   field ( SCAN, "Passive" )
+   field ( ZNAM, "Request Close" )
+   field ( ONAM, "Request Open" )
+   field ( FLNK, "$(SYS):VLV:$(SDEV)_delay")
+}
+
+record ( bi, "$(SYS):VLV:$(SDEV)_sts" ) {
+   field ( VAL, 0 )
+   field ( SCAN, "Passive" )
+   field ( ZNAM, "Closed" )
+   field ( ONAM, "Opened" )
+}
+
+## Interlock Records
+
+## Simulation Records
+
+record ( calcout, "$(SYS):VLV:$(SDEV)_delay" ) {
+   field ( DESC, "Delay VLV command" )
+   field ( SCAN, "Passive" )
+   field ( INPA, "$(SYS):VLV:$(SDEV)_req")
+   field ( CALC, "A" )
+   field ( ODLY, "1" )
+   field ( OUT,  "$(SYS):VLV:$(SDEV)_sts PP" )
+}

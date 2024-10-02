@@ -1,0 +1,9 @@
+file "valve.db" {
+    pattern { SYS, SDEV }
+    { "VAC_PMI", "TTRAIN" }
+}
+
+file "gauge.db" {
+    pattern { SYS }
+    { "VAC_PMI" }
+}

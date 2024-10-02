@@ -1,0 +1,15 @@
+record ( bo, "$(SYS):PMP:TPMP_req" ) {
+    field ( VAL,  0 )
+    field ( SCAN, "Passive" )
+    field ( ZNAM, "Request Off" )
+    field ( ONAM, "Request On" )
+    field ( FLNK, "$(SYS):PMP:TPMP_sts PP" )
+}
+
+record ( calcout, "$(SYS):PMP:TPMP_sts" ) {
+    field ( INPA, "$(SYS):PMP:TPMP_req" )
+    field ( VAL, "0" )
+    field ( CALC, "A" )
+    field ( SCAN, "Passive" )
+}
+

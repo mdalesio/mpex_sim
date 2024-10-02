@@ -1,0 +1,50 @@
+record ( bi, "INLK" ) {
+    field ( VAL, 1 )
+}
+
+record ( calc, "VAC:INLK" ) {
+    field ( VAL, 0 )
+    field ( INPA, "VAC_PMI:GGE:P" )
+    field ( SCAN, "1 second" )
+    field ( CALC, "A<0.00000001?1:0" )
+}
+
+record ( lso, "MPEX:SCHED" ) {
+    field( SIZV, "256" )
+}
+
+record ( bi, "MPEX:SCHED_lock" ) {
+    field ( VAL, 0 )
+}
+
+record ( calcout, "HVPS:Vout" ) {
+    field ( INPA, "HVPS:Vout" )
+    field ( CALC, "30*RNDM" )
+    field ( SCAN, "1 second" )
+}
+
+record ( calcout, "HVPS:Iout" ) {
+    field ( INPA, "HVPS:Iout" )
+    field ( CALC, "30*RNDM" )
+    field ( SCAN, "1 second" )
+}
+
+record ( ao, "HVPS:Vout_peak" ) {
+    field ( VAL, "70" )
+}
+
+record ( ao, "HVPS:Iout_peak" ) {
+    field ( VAL, "70" )
+}
+
+record ( mbbo, "HVPS:accd_sts" ) {
+    field ( VAL, "0" )
+}
+
+record ( mbbo, "HVPS:STS" ) {
+    field ( DESC, "Operating status (0=OFF, 1=STBY, 2=ON)" )
+    field ( VAL, "2" )
+    field ( ZRST, "OFF" )
+    field ( ONST, "STBY" )
+    field ( TWST, "ON" )
+}
